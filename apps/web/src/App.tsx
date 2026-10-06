@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { AppLayout } from './components/AppLayout';
 import { useAuth } from './contexts/AuthContext';
 import { CategoriesPage } from './pages/CategoriesPage';
@@ -30,26 +31,29 @@ function AdminOnly({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Routes>
-    <Route path="/login" element={<LoginPage />} />
-    <Route element={<ProtectedLayout />}>
-      <Route path="/" element={<DashboardPage />} />
-      <Route path="/equipamentos" element={<EquipmentListPage />} />
-      <Route path="/equipamentos/novo" element={<EquipmentFormPage />} />
-      <Route path="/equipamentos/:id" element={<EquipmentDetailPage />} />
-      <Route path="/equipamentos/:id/editar" element={<EquipmentFormPage />} />
-      <Route path="/scanner" element={<ScannerPage />} />
-      <Route path="/saidas" element={<MovementsPage />} />
-      <Route path="/saidas/nova" element={<CheckoutPage />} />
-      <Route path="/saidas/:id" element={<MovementDetailPage />} />
-      <Route path="/devolucoes" element={<ReturnsPage />} />
-      <Route path="/devolucoes/:id" element={<ReturnPage />} />
-      <Route path="/etiquetas" element={<LabelsPage />} />
-      <Route path="/relatorios" element={<ReportsPage />} />
-      <Route path="/admin/categorias" element={<AdminOnly><CategoriesPage /></AdminOnly>} />
-      <Route path="/admin/usuarios" element={<AdminOnly><UsersPage /></AdminOnly>} />
-      <Route path="/admin/configuracoes" element={<AdminOnly><SettingsPage /></AdminOnly>} />
-      <Route path="*" element={<NotFoundPage />} />
-    </Route>
-  </Routes>;
+  return <>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route element={<ProtectedLayout />}>
+        <Route path="/" element={<DashboardPage />} />
+        <Route path="/equipamentos" element={<EquipmentListPage />} />
+        <Route path="/equipamentos/novo" element={<EquipmentFormPage />} />
+        <Route path="/equipamentos/:id" element={<EquipmentDetailPage />} />
+        <Route path="/equipamentos/:id/editar" element={<EquipmentFormPage />} />
+        <Route path="/scanner" element={<ScannerPage />} />
+        <Route path="/saidas" element={<MovementsPage />} />
+        <Route path="/saidas/nova" element={<CheckoutPage />} />
+        <Route path="/saidas/:id" element={<MovementDetailPage />} />
+        <Route path="/devolucoes" element={<ReturnsPage />} />
+        <Route path="/devolucoes/:id" element={<ReturnPage />} />
+        <Route path="/etiquetas" element={<LabelsPage />} />
+        <Route path="/relatorios" element={<ReportsPage />} />
+        <Route path="/admin/categorias" element={<AdminOnly><CategoriesPage /></AdminOnly>} />
+        <Route path="/admin/usuarios" element={<AdminOnly><UsersPage /></AdminOnly>} />
+        <Route path="/admin/configuracoes" element={<AdminOnly><SettingsPage /></AdminOnly>} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
+    <SpeedInsights />
+  </>;
 }
